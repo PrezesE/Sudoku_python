@@ -1,0 +1,23 @@
+{
+  "editor.fontSize": 12,
+  "editor.minimap.enabled": true,
+  "editor.tabSize": 4,
+  "files.autoSave": "onFocusChange",
+  "python.defaultInterpreterPath": "E:\\PROGRAMY\\Python\\Python-3_10_8_standalone\\Python.exe",
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": false,
+  "python.linting.lintOnSave": true,
+  "python.testing.unittestEnabled": true,
+  "python.testing.pytestEnabled": false,
+  "python.testing.nosetestsEnabled": false,
+  "code-runner.clearPreviousOutput": true,
+  "code-runner.saveFileBeforeRun": true,
+  "code-runner.showExecutionMessage": false,
+  "code-runner.executorMap": {
+    "python": "python",
+  },
+  "workbench.panel.defaultLocation": "right",
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.completeFunctionParens": true,
+  "terminal.integrated.defaultProfile.windows": "Command Prompt"
+}
