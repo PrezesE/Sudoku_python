@@ -6,6 +6,8 @@ def help_message() -> str:
             "'Set:row,column,value' - changes number in given row and colum to a given value, indexing from 0 \n"+ \
             "'Help' - displays this message \n"+\
             "'Check' - checks if sudoku is properly filled \n"+\
+            "'Raw' - displays sudoku in raw numeric form \n"+\
+            "'Load: path' - loads sudoku form text file at given path \n"+\
             "\n"
     return message
 
@@ -21,6 +23,34 @@ def display_sudoku(sudoku:list[list[int]]):
             print("|",end="")
         print()
         print("-"*18)
+
+def display_raw_sudoku(sudoku:list[list[int]]):
+    
+    for row in sudoku:
+        for element in row:
+                print(element,end="")
+        print()
+
+def load_sudoku(file:str) ->list[list[int]]:
+    loaded_sudoku=[]
+    row=0
+    column=0
+    with open(file) as f:
+        for line in f:
+
+            line=line.strip().strip("\n")
+            #print("|",line,"|",sep="")
+            loaded_sudoku.append([])
+            for element in line:
+                #print(row,column, element)
+                loaded_sudoku[row].append(int(element))
+                column+=1
+            
+            row+=1
+            column=0
+    return loaded_sudoku
+
+        
 
 def attendance(attendance_list:list[int]) -> int:
     total = 1
@@ -61,20 +91,9 @@ def check_sudoku(sudoku:list[list[int]]) -> bool:
     return True
 
 
-example_sudoku=[[0,0,8,0,0,0,0,4,0],
-                [0,6,0,0,0,3,0,0,0],
-                [2,0,0,0,5,0,1,0,8],
-                [0,0,0,0,0,0,0,0,9],
-                [8,0,0,0,1,0,7,0,5],
-                [0,0,2,8,0,0,0,0,0],
-                [0,0,0,0,4,0,0,2,0],
-                [0,0,3,0,0,5,4,0,7],
-                [7,0,0,0,0,0,0,9,0],]
-
-
 def main_loop():
 
-    active_sudoku = example_sudoku
+    active_sudoku = load_sudoku("example_sudoku.txt")
     message=help_message()
     terminate=False
 
@@ -102,6 +121,13 @@ def main_loop():
                 message = "Sudoku all right \n"
             else:
                 message = "Sudoku wrong \n"
+        elif control == "raw" or control == "Raw":
+            display_raw_sudoku(active_sudoku)
+            input("press Enter key to continue")
+        elif control.startswith("load:") or control.startswith("Load:"):
+            active_sudoku=load_sudoku(control.lower().strip("load:").strip())
+            #input("press Enter key to continue")
+
     print("finished")
 
 
